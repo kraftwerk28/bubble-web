@@ -1,0 +1,157 @@
+// colors
+
+$font-color: white;
+$back-color: black;
+
+$min-height: 50px;
+$min-width: 150px;
+$border-radius: 4px;
+$input-color: rgba(255, 153, 0, 1);
+
+$slider-thumb: tomato;
+$slider-scrollable: green;
+$slider-thumb-size: 20px;
+$slider-scrollable-width: 5px;
+$button: orange;
+
+$checkbox-width: 40px;
+$checkbox-scrollable-width: 10px;
+
+body {
+  background-color: $back-color;
+}
+
+* {
+  outline: none;
+  transition-duration: 0.2s;
+
+  // color: white;
+  // background-color: black;
+}
+
+.bubble1 {
+  position: relative;
+  font-family: 'Roboto Mono', monospace;
+  font-size: large;
+  color: $font-color;
+  min-height: $min-height;
+  min-width: $min-width;
+  border-radius: $border-radius;
+  margin: 5px;
+}
+
+.reset {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+button {
+  @extend .bubble1;
+
+  border-style: none;
+  background-color: $button;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: lighten($button, 5%);
+}
+
+.button-canvas {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  border-radius: $border-radius;
+}
+
+.circle {
+  min-width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.input-text {
+  @extend .bubble1;
+
+  display: inline-block;
+}
+
+.checkbox {
+  @extend .reset;
+
+  @extend .bubble1;
+
+  line-height: 100%;
+  display: inline;
+}
+
+.checkbox > div {
+  position: relative;
+  display: inline-block;
+  margin-left: 10px;
+
+  // margin: 5px;
+  background-color: chartreuse;
+  width: $checkbox-width;
+  height: $checkbox-scrollable-width;
+  border-radius: $checkbox-scrollable-width;
+}
+
+.checkbox > div > div {
+  position: absolute;
+  margin: auto;
+  top: 0px;
+  bottom: 0px;
+  width: $slider-thumb-size;
+  height: $slider-thumb-size;
+  border-radius: 50%;
+  background-color: brown;
+}
+
+.checkbox .checked {
+  transform: translateX($checkbox-width - $slider-thumb-size);
+}
+
+input[type='text'] {
+  @extend .bubble1;
+
+  border-style: solid;
+  border-color: $input-color;
+  border-width: 3px;
+  background-color: transparent;
+  margin: 0px;
+  padding: 5px;
+}
+
+input[type='range'] {
+  @extend .reset;
+
+  background-color: $slider-scrollable;
+  height: 5px;
+  margin: auto;
+  margin: 10px;
+  border-radius: $slider-scrollable-width / 2;
+}
+
+input[type='checkbox'] {
+  @extend .reset;
+}
+
+input::-webkit-slider-thumb {
+  @extend .reset;
+
+  border-radius: 50%;
+  background-color: $slider-thumb;
+  cursor: pointer;
+  width: $slider-thumb-size;
+  height: $slider-thumb-size;
+  transition-duration: 0.2s;
+}
+
+input::-webkit-slider-thumb:active {
+  transform: scale(1.2);
+  transition-duration: 0.2s;
+}
