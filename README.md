@@ -4,6 +4,7 @@ Just cute css style template
 ## syntax:
 
 **Element** | **Syntax**
+---|---
 *button* | `<button [class="wave-effect"]><button>`
 *text input* | `<div class="input-text" [placeholder=""]></div>`
 *range input* | `<input type="range>`
