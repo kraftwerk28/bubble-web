@@ -1,5 +1,7 @@
-// colors
+$isdark: false;
+$hover-amount: 10%;
 
+// colors
 $font-color: white;
 $back-color: black;
 
@@ -16,6 +18,11 @@ $button: orange;
 
 $checkbox-width: 40px;
 $checkbox-scrollable-width: 10px;
+$checkbox-color: lime;
+$checkbox-unckecked: gray;
+
+$dropdown-head: indigo;
+$dropdown-item: darkorange;
 
 body {
   background-color: $back-color;
@@ -24,12 +31,22 @@ body {
 * {
   outline: none;
   transition-duration: 0.2s;
-
+  vertical-align: top;
+  
   // color: white;
   // background-color: black;
 }
 
-.bubble1 {
+%fill {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+}
+
+%bubble1 {
+  white-space: nowrap;
   position: relative;
   font-family: 'Roboto Mono', monospace;
   font-size: large;
@@ -38,24 +55,30 @@ body {
   min-width: $min-width;
   border-radius: $border-radius;
   margin: 5px;
+  // display: inline-block;
 }
 
-.reset {
+%reset {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
 }
 
 button {
-  @extend .bubble1;
+  @extend %bubble1;
 
   border-style: none;
   background-color: $button;
   cursor: pointer;
-}
 
-button:hover {
-  background-color: lighten($button, 5%);
+  &:hover {
+    @if $isdark {
+      background-color: darken($button, $hover-amount);
+    }
+    @else {
+      background-color: lighten($button, $hover-amount);
+    }
+  }
 }
 
 .button-canvas {
@@ -74,84 +97,196 @@ button:hover {
 }
 
 .input-text {
-  @extend .bubble1;
+  @extend %bubble1;
 
   display: inline-block;
+}
+
+%bool {
+  user-select: none;
+  line-height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: $min-height;
+
+  > div {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    margin: auto 10px auto 10px;
+    display: inline-block;
+    background-color: chartreuse;
+    width: $checkbox-width;
+    height: $checkbox-scrollable-width;
+    border-radius: $checkbox-scrollable-width;
+    background-color: $checkbox-unckecked;
+
+    > div {
+      position: absolute;
+      margin: auto;
+      top: 0px;
+      bottom: 0px;
+      width: $slider-thumb-size;
+      height: $slider-thumb-size;
+      border-radius: 50%;
+      background-color: white;
+      cursor: pointer;
+    }
+  }
+
+  input:checked ~ div {
+    background-color: $checkbox-color;
+
+    div {
+      transform: translateX($checkbox-width - $slider-thumb-size);
+    }
+  }
 }
 
 .checkbox {
-  @extend .reset;
+  @extend %bubble1;
 
-  @extend .bubble1;
-
-  line-height: 100%;
-  display: inline;
+  @extend %bool;
 }
 
-.checkbox > div {
-  position: relative;
-  display: inline-block;
-  margin-left: 10px;
+.radio {
+  @extend %bubble1;
 
-  // margin: 5px;
-  background-color: chartreuse;
-  width: $checkbox-width;
-  height: $checkbox-scrollable-width;
-  border-radius: $checkbox-scrollable-width;
+  @extend %bool;
 }
 
-.checkbox > div > div {
-  position: absolute;
-  margin: auto;
-  top: 0px;
-  bottom: 0px;
-  width: $slider-thumb-size;
-  height: $slider-thumb-size;
-  border-radius: 50%;
-  background-color: brown;
+input {
+  &[type='text'] {
+    @extend %bubble1;
+
+    border-style: solid;
+    border-color: $input-color;
+    border-width: 3px;
+    background-color: transparent;
+    margin: 0px;
+    padding: 5px;
+  }
+
+  &[type='range'] {
+    @extend %reset;
+
+    background-color: $slider-scrollable;
+    height: 5px;
+    margin: auto;
+    margin: 10px;
+    border-radius: $slider-scrollable-width / 2;
+
+    &::-webkit-slider-thumb {
+      @extend %reset;
+
+      border-radius: 50%;
+      background-color: $slider-thumb;
+      cursor: pointer;
+      width: $slider-thumb-size;
+      height: $slider-thumb-size;
+      transition-duration: 0.2s;
+    }
+
+    &::-webkit-slider-thumb:active {
+      transform: scale(1.2);
+      transition-duration: 0.2s;
+    }
+  }
+
+  &[type='checkbox'] {
+    @extend %reset;
+  }
+
+  &[type='radio'] {
+    @extend %reset;
+  }
 }
 
-.checkbox .checked {
-  transform: translateX($checkbox-width - $slider-thumb-size);
-}
+.dropdown {
+  @extend %bubble1;
 
-input[type='text'] {
-  @extend .bubble1;
-
-  border-style: solid;
-  border-color: $input-color;
-  border-width: 3px;
-  background-color: transparent;
-  margin: 0px;
-  padding: 5px;
-}
-
-input[type='range'] {
-  @extend .reset;
-
-  background-color: $slider-scrollable;
-  height: 5px;
-  margin: auto;
-  margin: 10px;
-  border-radius: $slider-scrollable-width / 2;
-}
-
-input[type='checkbox'] {
-  @extend .reset;
-}
-
-input::-webkit-slider-thumb {
-  @extend .reset;
-
-  border-radius: 50%;
-  background-color: $slider-thumb;
+  display: inline-table;
+  width: fit-content;
+  text-align: center;
+  background-color: $dropdown-head;
+  color: $font-color;
+  line-height: $min-height;
   cursor: pointer;
-  width: $slider-thumb-size;
-  height: $slider-thumb-size;
-  transition-duration: 0.2s;
+
+  > ul {
+    position: absolute;
+    top: 100%;
+    min-width: 100%;
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+
+    > li {
+      @extend %bubble1;
+      display: block;
+
+      opacity: 0;
+      z-index: 1;
+
+      // animation-name: dropdown-li;
+      animation-duration: 0.2s;
+      animation-fill-mode: both;
+      margin: 0px;
+
+      // cursor: pointer;
+      background-color: $dropdown-item;
+      color: $font-color;
+      border-radius: 0px;
+
+      &:first-child {
+        border-top-left-radius: $border-radius;
+        border-top-right-radius: $border-radius;
+      }
+
+      &:last-child {
+        border-bottom-left-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+      }
+
+      &:hover {
+        @if $isdark {
+          background-color: darken($dropdown-item, $hover-amount);
+        }
+        @else {
+          background-color: lighten($dropdown-item, $hover-amount);
+        }
+      }
+    }
+  }
 }
 
-input::-webkit-slider-thumb:active {
-  transform: scale(1.2);
-  transition-duration: 0.2s;
+@keyframes dropdown-li {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes dropdown-li-back {
+  from {
+    transform: translateY(0px);
+    opacity: 1;
+    pointer-events: none;
+  }
+
+  to {
+    transform: translateY(-20px);
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.overlay-href {
+  @extend %fill;
 }
