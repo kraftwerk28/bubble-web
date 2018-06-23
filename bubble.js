@@ -49,7 +49,6 @@
       else
         el.removeAttribute('checked');
     };
-    el.onchange = input.onchange;
   });
 
   const radios = document.getElementsByClassName('radio');
