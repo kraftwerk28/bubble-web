@@ -45,7 +45,7 @@
     el.appendChild(div1);
     input.onchange = () => {
       if (input.checked)
-        el.setAttribute('checked', 'checked');
+        el.setAttribute('checked', 'true');
       else
         el.removeAttribute('checked');
     };
