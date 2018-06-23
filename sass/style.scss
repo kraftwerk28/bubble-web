@@ -108,6 +108,7 @@ button {
   display: inline-block;
   vertical-align: middle;
   line-height: $min-height;
+  padding-right: $checkbox-width + 10px;
 
   > div {
     position: absolute;
