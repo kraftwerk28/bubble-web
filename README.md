@@ -3,9 +3,9 @@ Just cute css style template
 
 ## to use template in your project, add following lines in your .html
 ### head:
-`https://raw.githubusercontent.com/kraftwerk28/bubble-web/master/style.css`
+`https://cdn.rawgit.com/kraftwerk28/bubble-web/master/style.css`
 ### body:
-`https://raw.githubusercontent.com/kraftwerk28/bubble-web/master/bubble.js`
+`https://cdn.rawgit.com/kraftwerk28/bubble-web/master/bubble.js`
 
 ## syntax:
 
