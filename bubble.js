@@ -35,7 +35,6 @@
   const checkboxes = document.getElementsByClassName('checkbox');
 
   iterate(checkboxes, el => {
-    el.checked = false;
     const input = document.createElement('input');
     input.setAttribute('type', 'checkbox');
     const div1 = document.createElement('div');
@@ -43,11 +42,8 @@
     div1.appendChild(div2);
     el.appendChild(input);
     el.appendChild(div1);
-    input.onchange = () => {
-      if (input.checked)
-        el.setAttribute('checked', 'true');
-      else
-        el.removeAttribute('checked');
+    input.onchange = (e) => {
+      el.checked = input.checked;
     };
   });
 
