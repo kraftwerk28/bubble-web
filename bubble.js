@@ -44,7 +44,10 @@
     el.appendChild(input);
     el.appendChild(div1);
     input.onchange = () => {
-      el.checked = input.checked;
+      if (input.checked)
+        el.setAttribute('checked', 'checked');
+      else
+        el.removeAttribute('checked');
     };
     el.onchange = input.onchange;
   });
