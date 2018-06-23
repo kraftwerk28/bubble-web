@@ -109,6 +109,10 @@ input[type='range'] {
   input[type='range']::-webkit-slider-thumb:active {
     transform: scale(1.2);
     transition-duration: 0.2s; }
+input[type='checkbox'] {
+  -moz-appearance: none; }
+input[type='radio'] {
+  -moz-appearance: none; }
 
 .dropdown {
   display: inline-table;

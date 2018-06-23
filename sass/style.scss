@@ -32,7 +32,7 @@ body {
   outline: none;
   transition-duration: 0.2s;
   vertical-align: top;
-  
+
   // color: white;
   // background-color: black;
 }
@@ -55,6 +55,7 @@ body {
   min-width: $min-width;
   border-radius: $border-radius;
   margin: 5px;
+
   // display: inline-block;
 }
 
@@ -197,10 +198,14 @@ input {
 
   &[type='checkbox'] {
     @extend %reset;
+
+    -moz-appearance: none;
   }
 
   &[type='radio'] {
     @extend %reset;
+
+    -moz-appearance: none;
   }
 }
 
@@ -225,8 +230,8 @@ input {
 
     > li {
       @extend %bubble1;
-      display: block;
 
+      display: block;
       opacity: 0;
       z-index: 1;
 
