@@ -8,7 +8,7 @@
       "type": "chrome",
       "request": "launch",
       "name": "Launch Chrome against localhost",
-      "url": "file:///media/kraftwerk28/D:/JS/bubble-web/index.html",
+      "url": "file:///media/kraftwerk28/D:/JS/bubble-web/lobby.html",
       "webRoot": "${workspaceFolder}"
     }
   ]

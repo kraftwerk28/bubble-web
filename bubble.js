@@ -8,12 +8,12 @@
 
   window.onresize = () => {
     iterate(document.getElementsByClassName('button-canvas'),
-      el => {
+      (el) => {
         el.offset = el.parentNode.getBoundingClientRect();
       });
   };
 
-  const fillcanvas = (el) => {
+  const fillcanvas = (el, color) => {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     ctx.circle = (x, y, r) => {
@@ -21,20 +21,40 @@
       ctx.arc(x, y, r, 0, Math.PI * 2);
       ctx.fill();
     };
+    el.addEventListener('mousedown', () => {
+      canvas.offset = canvas.getBoundingClientRect();
+    });
+    canvas.ontouchstart = canvas.onmousedown;
     canvas.className = 'button-canvas';
-    canvas.top = el.offsetTop;
-    canvas.left = el.offsetLeft;
-    canvas.width = el.clientWidth;
-    canvas.height = el.clientHeight;
     el.appendChild(canvas);
+    setTimeout(() => {
+      canvas.top = el.offsetTop;
+      canvas.left = el.offsetLeft;
+      canvas.width = el.clientWidth;
+      canvas.height = el.clientHeight;
+      canvas.offset = canvas.getBoundingClientRect();
+      if (color !== undefined)
+        ctx.fillStyle = color;
+      else
+        ctx.fillStyle = 'white';
+    }, 100);
     return [canvas, ctx];
   };
 
   const waveSpeed = 1000 / 50;
 
+  const colors = document.querySelectorAll('button, .dropdown, .dropdown');
+
+  iterate(colors, (el) => {
+    const color = el.getAttribute('color');
+    if (color) {
+      el.style.backgroundColor = color;
+    }
+  });
+
   const checkboxes = document.getElementsByClassName('checkbox');
 
-  iterate(checkboxes, el => {
+  iterate(checkboxes, (el) => {
     const input = document.createElement('input');
     input.setAttribute('type', 'checkbox');
     const div1 = document.createElement('div');
@@ -49,7 +69,7 @@
 
   const radios = document.getElementsByClassName('radio');
 
-  iterate(radios, el => {
+  iterate(radios, (el) => {
     const input = document.createElement('input');
     input.setAttribute('type', 'radio');
     const div1 = document.createElement('div');
@@ -66,18 +86,20 @@
 
   const inputText = document.getElementsByClassName('input-text');
 
-  iterate(inputText, el => {
+  iterate(inputText, (el) => {
+    let color = el.getAttribute('color');
+    color = color ? color : 'orange';
     const input = document.createElement('input');
     input.setAttribute('type', 'text');
     input.setAttribute('placeholder',
       el.getAttribute('placeholder') ? el.getAttribute('placeholder') : '');
     el.appendChild(input);
-    const [canvas, ctx] = fillcanvas(el);
+    const [canvas, ctx] = fillcanvas(el, color);
 
     canvas.offset = el.getBoundingClientRect();
     const max = Math.max(canvas.width, canvas.height);
-    ctx.fillStyle = window.getComputedStyle(input).borderColor;
-    canvas.style.zIndex = '-1';
+    input.style.borderColor = color;
+    canvas.style.zIndex = '0';
     let r = 0;
     let _e;
 
@@ -114,12 +136,12 @@
 
   const dropdowns = document.getElementsByClassName('dropdown');
 
-  iterate(dropdowns, el => {
+  iterate(dropdowns, (el) => {
     let t, h;
     el.showing = false;
-    el.children[0].style.display = 'none';
+    el.firstElementChild.style.display = 'none';
     el.onclick = (e) => {
-      if (e.target === el) {
+      if (e.target === el || e.target === el.lastElementChild) {
         el.showing = !el.showing;
         if (el.showing) {
           clearTimeout(h);
@@ -156,15 +178,10 @@
     };
   });
 
-  const bubbleClick = [
-    ...document.getElementsByClassName('wave-effect'),
-    ...document.getElementsByClassName('dropdown')
-  ]
+  const bubbleClick = document.getElementsByClassName('wave-effect');
 
-  iterate(bubbleClick, el => {
+  iterate(bubbleClick, (el) => {
     const [canvas, ctx] = fillcanvas(el);
-    ctx.fillStyle = 'white';
-    canvas.offset = canvas.getBoundingClientRect();
     const max = Math.max(canvas.width, canvas.height);
     let r = 0;
     let pressed = false;
