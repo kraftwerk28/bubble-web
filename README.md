@@ -11,7 +11,7 @@ Just cute css style template
 
 **Element** | **Syntax**
 ---|---
-*button* | `<button [class="wave-effect" color=""]><button>`
+*button* | `<button [class="wave" color=""]><button>`
 *text input* | `<div class="input-text" [placeholder=""]></div>`
 *range input* | `<input type="range>`
 *dropdown menu* | `<div class="dropdown"><ul><li></li>[<li></li>...]</ul></div>`

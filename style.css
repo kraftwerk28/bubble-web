@@ -22,7 +22,8 @@ button, .input-text, .checkbox, .radio, input[type='text'], .dropdown, .dropdown
   min-height: 50px;
   min-width: 150px;
   border-radius: 4px;
-  margin: 5px; }
+  margin: 5px;
+  overflow: hidden; }
 
 input[type='range'], input[type='range']::-webkit-slider-thumb, input[type='checkbox'], input[type='radio'] {
   appearance: none;
@@ -44,6 +45,48 @@ button {
   right: 0px;
   border-radius: inherit; }
 
+.wave {
+  overflow: hidden; }
+
+.wave-div, .wave-div-input {
+  position: absolute;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  background-color: rgba(255, 255, 255, 0.5);
+  animation-name: waveOut;
+  animation-timing-function: ease-out;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  transition-duration: 0s; }
+
+@keyframes waveIn {
+  from {
+    transform: scale(1);
+    opacity: 0; }
+  to {
+    transform: scale(0);
+    opacity: 0.5; } }
+@keyframes waveOut {
+  from {
+    transform: scale(0); }
+  to {
+    transform: scale(1);
+    opacity: 0; } }
+.wave-div-input {
+  animation-duration: 0.5s; }
+
+@keyframes waveInputIn {
+  from {
+    transform: scale(0); }
+  to {
+    transform: scale(1); } }
+@keyframes waveInputOut {
+  from {
+    transform: scale(1); }
+  to {
+    transform: scale(0);
+    opacity: 0; } }
 .circle {
   min-width: 50px;
   min-height: 50px;
@@ -80,12 +123,27 @@ button {
       height: 20px;
       border-radius: 50%;
       background-color: white;
-      cursor: pointer; }
+      cursor: pointer;
+      animation: unchecking 0.3s linear; }
   .checkbox input:checked ~ div, .radio input:checked ~ div {
     background-color: lime; }
     .checkbox input:checked ~ div div, .radio input:checked ~ div div {
-      transform: translateX(20px); }
+      animation: checking 0.3s forwards linear; }
 
+@keyframes checking {
+  0% {
+    transform: translateX(0) scale(1); }
+  50% {
+    transform: translateX(10px) scale(0.5) scaleX(4); }
+  100% {
+    transform: translateX(20px) scale(1); } }
+@keyframes unchecking {
+  0% {
+    transform: translateX(20px) scale(1); }
+  50% {
+    transform: translateX(10px) scale(0.5) scaleX(4); }
+  100% {
+    transform: translateX(0) scale(1); } }
 input[type='text'] {
   border-style: solid;
   border-color: #ff9900;

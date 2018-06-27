@@ -55,6 +55,7 @@ body {
   min-width: $min-width;
   border-radius: $border-radius;
   margin: 5px;
+  overflow: hidden;
 
   // display: inline-block;
 }
@@ -89,6 +90,74 @@ button {
   bottom: 0px;
   right: 0px;
   border-radius: inherit;
+}
+
+.wave {
+  overflow: hidden;
+}
+
+.wave-div {
+  position: absolute;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  background-color: rgba(255, 255, 255, 0.5);
+  animation-name: waveOut;
+  animation-timing-function: ease-out;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  transition-duration: 0s;
+}
+
+@keyframes waveIn {
+  from {
+    transform: scale(1);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+}
+
+@keyframes waveOut {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+.wave-div-input {
+  @extend .wave-div;
+
+  animation-duration: 0.5s;
+}
+
+@keyframes waveInputIn {
+  from {
+    // opacity: 0;
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes waveInputOut {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(0);
+    opacity: 0;
+  }
 }
 
 .circle {
@@ -134,6 +203,7 @@ button {
       border-radius: 50%;
       background-color: white;
       cursor: pointer;
+      animation: unchecking 0.3s linear;
     }
   }
 
@@ -141,8 +211,39 @@ button {
     background-color: $checkbox-color;
 
     div {
-      transform: translateX($checkbox-width - $slider-thumb-size);
+      animation: checking 0.3s forwards linear;
+
+      // transform: translateX($checkbox-width - $slider-thumb-size);
+   
     }
+  }
+}
+
+@keyframes checking {
+  0% {
+    transform: translateX(0) scale(1);
+  }
+
+  50% {
+    transform: translateX(($checkbox-width - $slider-thumb-size) / 2) scale(0.5) scaleX(4);
+  }
+
+  100% {
+    transform: translateX($checkbox-width - $slider-thumb-size) scale(1);
+  }
+}
+
+@keyframes unchecking {
+  0% {
+    transform: translateX($checkbox-width - $slider-thumb-size) scale(1);
+  }
+
+  50% {
+    transform: translateX(($checkbox-width - $slider-thumb-size) / 2) scale(0.5) scaleX(4);
+  }
+
+  100% {
+    transform: translateX(0) scale(1);
   }
 }
 

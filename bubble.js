@@ -87,6 +87,7 @@
   const inputText = document.getElementsByClassName('input-text');
 
   iterate(inputText, (el) => {
+
     let color = el.getAttribute('color');
     color = color ? color : 'orange';
     const input = document.createElement('input');
@@ -94,43 +95,23 @@
     input.setAttribute('placeholder',
       el.getAttribute('placeholder') ? el.getAttribute('placeholder') : '');
     el.appendChild(input);
-    const [canvas, ctx] = fillcanvas(el, color);
-
-    canvas.offset = el.getBoundingClientRect();
-    const max = Math.max(canvas.width, canvas.height);
+    const div = document.createElement('div');
+    div.className = 'wave-div-input';
+    div.style.backgroundColor = color;
     input.style.borderColor = color;
-    canvas.style.zIndex = '0';
-    let r = 0;
-    let _e;
+    const s = Math.max(el.offsetWidth, el.offsetHeight);
 
-    const wave = (e, d) => {
-      r += d;
-      if (r < 0) r = 0;
-      const [x, y] = [e.x - canvas.offset.x, e.y - canvas.offset.y];
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.globalCompositeOperation = 'destination-out';
-      ctx.circle(x, y, r);
-      ctx.globalCompositeOperation = 'copy';
-      if (r > 0 && r < max) {
-        setTimeout(() => {
-          wave(e, d);
-        }, waveSpeed);
-      } else if (d < 0) {
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-      } else {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-      }
-    };
     input.onmousedown = e => {
       if (input !== document.activeElement) {
-        _e = e;
-        r = max;
-        wave(e, -20);
+        el.appendChild(div);
+        div.style.width = div.style.height = 2 * s;
+        div.style.left = e.clientX - el.offsetLeft - s;
+        div.style.top = e.clientY - el.offsetTop - s;
+        div.style.animationName = 'waveInputIn';
       }
     };
     input.onblur = () => {
-      r = 0;
-      wave(_e, 20);
+      div.style.animationName = 'waveInputOut';
     };
   });
 
@@ -178,39 +159,24 @@
     };
   });
 
-  const bubbleClick = document.getElementsByClassName('wave-effect');
+  const waveEffect = document.getElementsByClassName('wave');
 
-  iterate(bubbleClick, (el) => {
-    const [canvas, ctx] = fillcanvas(el);
-    const max = Math.max(canvas.width, canvas.height);
-    let r = 0;
-    let pressed = false;
-    let clock;
-    const wave = (e, delta) => {
-      r += delta;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const [x, y] = [e.x - canvas.offset.x, e.y - canvas.offset.y];
-      ctx.globalAlpha = 10 / r;
-      ctx.circle(x, y, r);
-      if (r > 0 && r < max && delta !== 0) {
-        clock = setTimeout(() => {
-          wave(e, delta);
-        }, waveSpeed);
-      } else
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+  iterate(waveEffect, (el) => {
+    const div = document.createElement('div');
+    div.className = 'wave-div';
+    const s = Math.max(el.offsetWidth, el.offsetHeight);
+
+    el.onmousedown = (e) => {
+      el.appendChild(div);
+      div.style.width = div.style.height = 2 * s;
+      div.style.left = e.clientX - el.offsetLeft - s;
+      div.style.top = e.clientY - el.offsetTop - s;
+      div.style.animationName = 'waveIn';
     };
-    canvas.onmousedown = e => {
-      // clearTimeout(clock);
-      pressed = true;
-      r = max;
-      wave(e, -max / 20);
-    };
-    canvas.onmouseup = e => {
-      clearTimeout(clock);
-      pressed = false;
-      r = 10;
-      wave(e, max / 20);
+    el.onmouseup = (e) => {
+      div.style.left = e.clientX - el.offsetLeft - s;
+      div.style.top = e.clientY - el.offsetTop - s;
+      div.style.animationName = 'waveOut';
     };
   });
-
 })();
