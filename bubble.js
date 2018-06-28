@@ -43,7 +43,7 @@
 
   const waveSpeed = 1000 / 50;
 
-  const colors = document.querySelectorAll('button, .dropdown, .dropdown');
+  const colors = document.querySelectorAll('button, .dropdown');
 
   iterate(colors, (el) => {
     const color = el.getAttribute('color');
@@ -164,18 +164,22 @@
   iterate(waveEffect, (el) => {
     const div = document.createElement('div');
     div.className = 'wave-div';
-    const s = Math.max(el.offsetWidth, el.offsetHeight);
 
     el.onmousedown = (e) => {
       el.appendChild(div);
+      const rect = el.getBoundingClientRect();
+      const s = Math.max(rect.width, rect.height);
       div.style.width = div.style.height = 2 * s;
-      div.style.left = e.clientX - el.offsetLeft - s;
-      div.style.top = e.clientY - el.offsetTop - s;
+      div.style.left = e.clientX - rect.left - s + 'px';
+      div.style.top = e.clientY - rect.top - s + 'px';
+      console.log(s);
       div.style.animationName = 'waveIn';
     };
     el.onmouseup = (e) => {
-      div.style.left = e.clientX - el.offsetLeft - s;
-      div.style.top = e.clientY - el.offsetTop - s;
+      const rect = el.getBoundingClientRect();
+      const s = Math.max(rect.width, rect.height);
+      div.style.left = e.clientX - rect.left - s;
+      div.style.top = e.clientY - rect.top - s;
       div.style.animationName = 'waveOut';
     };
   });
