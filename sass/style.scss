@@ -112,6 +112,7 @@ button {
   animation-fill-mode: both;
   transition-duration: 0s;
   z-index: 50;
+  pointer-events: none;
 }
 
 @keyframes waveIn {

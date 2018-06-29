@@ -61,7 +61,8 @@ button {
   animation-duration: 0.5s;
   animation-fill-mode: both;
   transition-duration: 0s;
-  z-index: 50; }
+  z-index: 50;
+  pointer-events: none; }
 
 @keyframes waveIn {
   0% {
