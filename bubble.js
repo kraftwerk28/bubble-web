@@ -172,8 +172,8 @@
       div.style.width = div.style.height = 2 * s;
       div.style.left = e.clientX - rect.left - s + 'px';
       div.style.top = e.clientY - rect.top - s + 'px';
-      console.log(s);
       div.style.animationName = 'waveIn';
+      div.style.animationDuration = '2s';
     };
     el.onmouseup = (e) => {
       const rect = el.getBoundingClientRect();
@@ -181,6 +181,7 @@
       div.style.left = e.clientX - rect.left - s;
       div.style.top = e.clientY - rect.top - s;
       div.style.animationName = 'waveOut';
+      div.style.animationDuration = '0.5s';
     };
   });
 })();
