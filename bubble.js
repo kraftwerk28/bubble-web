@@ -5,6 +5,8 @@
   const iterate = (iterable, fn) => {
     Array.prototype.forEach.call(iterable, fn)
   };
+  const isMobile = (typeof window.orientation !== "undefined") ||
+    (navigator.userAgent.indexOf('IEMobile') !== -1);
 
   window.onresize = () => {
     iterate(document.getElementsByClassName('button-canvas'),
@@ -132,9 +134,7 @@
             li.style.pointerEvents = 'auto';
             li.style.animationDelay = i * 50 + 'ms';
           });
-          el.style.width = el.firstElementChild.offsetWidth;
         } else {
-          el.style.width = 'initial';
           iterate(el.firstElementChild.children, (li, i) => {
             li.style.animationName = 'dropdown-li-back';
             li.style.pointerEvents = 'none';
@@ -165,42 +165,36 @@
     const div = document.createElement('div');
     div.className = 'wave-div';
 
+    if (isMobile) {
+      el.addEventListener('touchstart', (e) => {
+        el.appendChild(div);
+        const rect = el.getBoundingClientRect();
+        const s = Math.max(rect.width, rect.height);
+        div.style.width = div.style.height = 2 * s;
+        div.style.left = e.touches[0].clientX - rect.left - s + 'px';
+        div.style.top = e.touches[0].clientY - rect.top - s + 'px';
+        div.classList.add('rippl');
+      });
+      el.addEventListener('mouseup', (e) => {
+        div.classList.remove('rippl');
+      });
+    } else {
+      el.addEventListener('mousedown', (e) => {
+        el.appendChild(div);
+        const rect = el.getBoundingClientRect();
+        const s = Math.max(rect.width, rect.height);
+        div.style.width = div.style.height = 2 * s;
+        div.style.left = e.clientX - rect.left - s + 'px';
+        div.style.top = e.clientY - rect.top - s + 'px';
+        div.classList.add('rippl');
+      });
+      el.addEventListener('touchend', (e) => {
+        div.classList.remove('rippl');
+      });
 
-
-    el.addEventListener('mousedown', (e) => {
-      el.appendChild(div);
-      const rect = el.getBoundingClientRect();
-      const s = Math.max(rect.width, rect.height);
-      div.style.width = div.style.height = 2 * s;
-      div.style.left = e.clientX - rect.left - s + 'px';
-      div.style.top = e.clientY - rect.top - s + 'px';
-      div.classList.add('rippl');
-    });
-
-    el.addEventListener('touchstart', (e) => {
-      e.preventDefault();
-      el.appendChild(div);
-      const rect = el.getBoundingClientRect();
-      const s = Math.max(rect.width, rect.height);
-      div.style.width = div.style.height = 2 * s;
-      div.style.left = e.touches[0].clientX - rect.left - s + 'px';
-      div.style.top = e.touches[0].clientY - rect.top - s + 'px';
-      div.classList.add('rippl');
-    });
-
-    el.addEventListener('mouseup', (e) => {
-      div.classList.remove('rippl');
-    });
-
-    el.addEventListener('touchend', (e) => {
-      e.preventDefault();
-      div.classList.remove('rippl');
-    });
-
-    // el.addEventListener('touchcancel', (e) => {
-    //   e.preventDefault();
-    //   div.classList.remove('rippl');
-    // });
-
+      el.addEventListener('touchcancel', (e) => {
+        div.classList.remove('rippl');
+      });
+    }
   });
 })();

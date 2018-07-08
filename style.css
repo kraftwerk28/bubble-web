@@ -34,7 +34,8 @@ input[type='range'], input[type='range']::-webkit-slider-thumb, input[type='chec
 button {
   border-style: none;
   background-color: orange;
-  cursor: pointer; }
+  cursor: pointer;
+  user-select: none; }
   button:hover {
     background-color: #ffb733; }
   button::-moz-focus-inner {
@@ -81,7 +82,7 @@ button {
     transform: scale(1);
     opacity: 0; } }
 .wave-div-input {
-  animation-duration: 0.5s;
+  animation-duration: 0.7s;
   animation-fill-mode: both;
   z-index: 0; }
 

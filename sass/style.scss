@@ -73,6 +73,7 @@ button {
   border-style: none;
   background-color: $button;
   cursor: pointer;
+  user-select: none;
 
   &:hover {
     @if $isdark {
@@ -150,7 +151,7 @@ button {
 .wave-div-input {
   @extend .wave-div;
 
-  animation-duration: 0.5s;
+  animation-duration: 0.7s;
   animation-fill-mode: both;
   z-index: 0;
 }
