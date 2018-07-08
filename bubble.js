@@ -169,13 +169,17 @@
       el.addEventListener('touchstart', (e) => {
         el.appendChild(div);
         const rect = el.getBoundingClientRect();
-        const s = Math.max(rect.width, rect.height);
+        const s = Math.sqrt(rect.width ** 2, rect.height ** 2);
         div.style.width = div.style.height = 2 * s;
         div.style.left = e.touches[0].clientX - rect.left - s + 'px';
         div.style.top = e.touches[0].clientY - rect.top - s + 'px';
         div.classList.add('rippl');
       });
-      el.addEventListener('mouseup', (e) => {
+      el.addEventListener('touchend', (e) => {
+        div.classList.remove('rippl');
+      });
+
+      el.addEventListener('touchcancel', (e) => {
         div.classList.remove('rippl');
       });
     } else {
@@ -188,11 +192,7 @@
         div.style.top = e.clientY - rect.top - s + 'px';
         div.classList.add('rippl');
       });
-      el.addEventListener('touchend', (e) => {
-        div.classList.remove('rippl');
-      });
-
-      el.addEventListener('touchcancel', (e) => {
+      el.addEventListener('mouseup', (e) => {
         div.classList.remove('rippl');
       });
     }
