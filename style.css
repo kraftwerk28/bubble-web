@@ -56,42 +56,45 @@ button {
   width: 100px;
   height: 100px;
   background-color: rgba(255, 255, 255, 0.5);
-  animation-name: waveOut;
-  animation-timing-function: ease-out;
-  animation-duration: 0.5s;
-  animation-fill-mode: both;
   transition-duration: 0s;
+  opacity: 0;
+  animation: waveOut 0.7s ease;
+  transition-delay: 1s;
   z-index: 50;
-  pointer-events: none; }
+  pointer-events: none;
+  transition: opacity 0.5s; }
 
-@keyframes waveIn {
-  0% {
-    transform: scale(1);
-    opacity: 0; }
-  50% {
-    transform: scale(1);
-    opacity: 1; }
-  100% {
-    transform: scale(0);
-    opacity: 0.5; } }
+.rippl {
+  opacity: 1;
+  transition: transform 0s; }
+
 @keyframes waveOut {
   from {
     transform: scale(0); }
+  to {
+    transform: scale(1); } }
+@keyframes waveIn {
+  from {
+    opacity: 1; }
   to {
     transform: scale(1);
     opacity: 0; } }
 .wave-div-input {
   animation-duration: 0.5s;
+  animation-fill-mode: both;
   z-index: 0; }
 
 @keyframes waveInputIn {
   from {
-    transform: scale(0); }
+    transform: scale(0);
+    opacity: 1; }
   to {
-    transform: scale(1); } }
+    transform: scale(1);
+    opacity: 1; } }
 @keyframes waveInputOut {
   from {
-    transform: scale(1); }
+    transform: scale(1);
+    opacity: 1; }
   to {
     transform: scale(0);
     opacity: 0; } }

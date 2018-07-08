@@ -13,35 +13,35 @@
       });
   };
 
-  const fillcanvas = (el, color) => {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    ctx.circle = (x, y, r) => {
-      ctx.beginPath();
-      ctx.arc(x, y, r, 0, Math.PI * 2);
-      ctx.fill();
-    };
-    el.addEventListener('mousedown', () => {
-      canvas.offset = canvas.getBoundingClientRect();
-    });
-    canvas.ontouchstart = canvas.onmousedown;
-    canvas.className = 'button-canvas';
-    el.appendChild(canvas);
-    setTimeout(() => {
-      canvas.top = el.offsetTop;
-      canvas.left = el.offsetLeft;
-      canvas.width = el.clientWidth;
-      canvas.height = el.clientHeight;
-      canvas.offset = canvas.getBoundingClientRect();
-      if (color !== undefined)
-        ctx.fillStyle = color;
-      else
-        ctx.fillStyle = 'white';
-    }, 100);
-    return [canvas, ctx];
-  };
+  // const fillcanvas = (el, color) => {
+  //   const canvas = document.createElement('canvas');
+  //   const ctx = canvas.getContext('2d');
+  //   ctx.circle = (x, y, r) => {
+  //     ctx.beginPath();
+  //     ctx.arc(x, y, r, 0, Math.PI * 2);
+  //     ctx.fill();
+  //   };
+  //   el.addEventListener('mousedown', () => {
+  //     canvas.offset = canvas.getBoundingClientRect();
+  //   });
+  //   canvas.ontouchstart = canvas.onmousedown;
+  //   canvas.className = 'button-canvas';
+  //   el.appendChild(canvas);
+  //   setTimeout(() => {
+  //     canvas.top = el.offsetTop;
+  //     canvas.left = el.offsetLeft;
+  //     canvas.width = el.clientWidth;
+  //     canvas.height = el.clientHeight;
+  //     canvas.offset = canvas.getBoundingClientRect();
+  //     if (color !== undefined)
+  //       ctx.fillStyle = color;
+  //     else
+  //       ctx.fillStyle = 'white';
+  //   }, 100);
+  //   return [canvas, ctx];
+  // };
 
-  const waveSpeed = 1000 / 50;
+  // const waveSpeed = 1000 / 50;
 
   const colors = document.querySelectorAll('button, .dropdown');
 
@@ -172,16 +172,18 @@
       div.style.width = div.style.height = 2 * s;
       div.style.left = e.clientX - rect.left - s + 'px';
       div.style.top = e.clientY - rect.top - s + 'px';
-      div.style.animationName = 'waveIn';
-      div.style.animationDuration = '2s';
+      div.classList.add('rippl');
+      // div.style.animationName = 'waveOut';
     };
+
     el.onmouseup = (e) => {
-      const rect = el.getBoundingClientRect();
-      const s = Math.max(rect.width, rect.height);
-      div.style.left = e.clientX - rect.left - s;
-      div.style.top = e.clientY - rect.top - s;
-      div.style.animationName = 'waveOut';
-      div.style.animationDuration = '0.5s';
+      div.classList.remove('rippl');
+      // const rect = el.getBoundingClientRect();
+      // const s = Math.max(rect.width, rect.height);
+      // div.style.left = e.clientX - rect.left - s;
+      // div.style.top = e.clientY - rect.top - s;
+      // div.style.animationName = 'waveIn';
     };
+
   });
 })();
