@@ -168,7 +168,6 @@
 
 
     el.addEventListener('mousedown', (e) => {
-      console.log('mdown');
       el.appendChild(div);
       const rect = el.getBoundingClientRect();
       const s = Math.max(rect.width, rect.height);
@@ -198,9 +197,10 @@
       div.classList.remove('rippl');
     });
 
-    el.addEventListener('touchcancel', () => {
+    el.addEventListener('touchcancel', (e) => {
+      e.preventDefault();
       div.classList.remove('rippl');
     });
-    
+
   });
 })();
