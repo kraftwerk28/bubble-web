@@ -106,9 +106,9 @@
     input.onmousedown = e => {
       if (input !== document.activeElement) {
         el.appendChild(div);
-        div.style.width = div.style.height = 2 * s;
-        div.style.left = e.clientX - el.offsetLeft - s;
-        div.style.top = e.clientY - el.offsetTop - s;
+        div.style.width = div.style.height = 2 * s + 'px';
+        div.style.left = e.clientX - el.offsetLeft - s + 'px';
+        div.style.top = e.clientY - el.offsetTop - s + 'px';
         div.style.animationName = 'waveInputIn';
       }
     };
@@ -187,7 +187,7 @@
         el.appendChild(div);
         const rect = el.getBoundingClientRect();
         const s = Math.max(rect.width, rect.height);
-        div.style.width = div.style.height = 2 * s;
+        div.style.width = div.style.height = 2 * s + 'px';
         div.style.left = e.clientX - rect.left - s + 'px';
         div.style.top = e.clientY - rect.top - s + 'px';
         div.classList.add('rippl');
