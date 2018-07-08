@@ -165,7 +165,10 @@
     const div = document.createElement('div');
     div.className = 'wave-div';
 
-    el.onmousedown = (e) => {
+
+
+    el.addEventListener('mousedown', (e) => {
+      console.log('mdown');
       el.appendChild(div);
       const rect = el.getBoundingClientRect();
       const s = Math.max(rect.width, rect.height);
@@ -173,17 +176,29 @@
       div.style.left = e.clientX - rect.left - s + 'px';
       div.style.top = e.clientY - rect.top - s + 'px';
       div.classList.add('rippl');
-      // div.style.animationName = 'waveOut';
-    };
+    });
 
-    el.onmouseup = (e) => {
+    el.addEventListener('touchstart', (e) => {
+      el.appendChild(div);
+      const rect = el.getBoundingClientRect();
+      const s = Math.max(rect.width, rect.height);
+      div.style.width = div.style.height = 2 * s;
+      div.style.left = e.touches[0].clientX - rect.left - s + 'px';
+      div.style.top = e.touches[0].clientY - rect.top - s + 'px';
+      div.classList.add('rippl');
+    });
+
+    el.addEventListener('mouseup', (e) => {
       div.classList.remove('rippl');
-      // const rect = el.getBoundingClientRect();
-      // const s = Math.max(rect.width, rect.height);
-      // div.style.left = e.clientX - rect.left - s;
-      // div.style.top = e.clientY - rect.top - s;
-      // div.style.animationName = 'waveIn';
-    };
+    });
 
+    el.addEventListener('touchend', () => {
+      div.classList.remove('rippl');
+    });
+
+    el.addEventListener('touchcancel', () => {
+      div.classList.remove('rippl');
+    });
+    
   });
 })();
