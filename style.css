@@ -4,7 +4,8 @@ body {
 * {
   outline: none;
   transition-duration: 0.2s;
-  vertical-align: top; }
+  vertical-align: top;
+  -webkit-tap-highlight-color: transparent; }
 
 .overlay-href {
   position: absolute;

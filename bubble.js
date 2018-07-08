@@ -179,6 +179,7 @@
     });
 
     el.addEventListener('touchstart', (e) => {
+      e.preventDefault();
       el.appendChild(div);
       const rect = el.getBoundingClientRect();
       const s = Math.max(rect.width, rect.height);
@@ -192,7 +193,8 @@
       div.classList.remove('rippl');
     });
 
-    el.addEventListener('touchend', () => {
+    el.addEventListener('touchend', (e) => {
+      e.preventDefault();
       div.classList.remove('rippl');
     });
 
