@@ -197,10 +197,10 @@
       div.classList.remove('rippl');
     });
 
-    el.addEventListener('touchcancel', (e) => {
-      e.preventDefault();
-      div.classList.remove('rippl');
-    });
+    // el.addEventListener('touchcancel', (e) => {
+    //   e.preventDefault();
+    //   div.classList.remove('rippl');
+    // });
 
   });
 })();
