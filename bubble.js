@@ -101,7 +101,7 @@ let rippleColor = 'rgba(255, 255, 255, 0.5)';
     div.className = 'wave-div-input';
     div.style.backgroundColor = color;
     input.style.borderColor = color;
-    const s = Math.max(el.offsetWidth, el.offsetHeight);
+    const s = Math.sqrt(el.offsetWidth ** 2 + el.offsetHeight ** 2);
 
     input.onmousedown = e => {
       if (input !== document.activeElement) {
@@ -170,7 +170,7 @@ let rippleColor = 'rgba(255, 255, 255, 0.5)';
       el.addEventListener('touchstart', (e) => {
         el.appendChild(div);
         const rect = el.getBoundingClientRect();
-        const s = Math.sqrt(rect.width ** 2, rect.height ** 2);
+        const s = Math.sqrt(rect.width ** 2 + rect.height ** 2);
         div.style.width = div.style.height = 2 * s;
         div.style.left = e.touches[0].clientX - rect.left - s + 'px';
         div.style.top = e.touches[0].clientY - rect.top - s + 'px';
@@ -187,7 +187,7 @@ let rippleColor = 'rgba(255, 255, 255, 0.5)';
       el.addEventListener('mousedown', (e) => {
         el.appendChild(div);
         const rect = el.getBoundingClientRect();
-        const s = Math.max(rect.width, rect.height);
+        const s = Math.sqrt(rect.width ** 2 + rect.height ** 2);
         div.style.width = div.style.height = 2 * s + 'px';
         div.style.left = e.clientX - rect.left - s + 'px';
         div.style.top = e.clientY - rect.top - s + 'px';
