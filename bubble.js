@@ -1,7 +1,7 @@
+let rippleColor = 'rgba(255, 255, 255, 0.5)';
 (() => {
   'use strict';
 
-  const buttonWaveColor = 'rgba(255, 255, 255, 0.5)'
   const iterate = (iterable, fn) => {
     Array.prototype.forEach.call(iterable, fn)
   };
@@ -164,6 +164,7 @@
   iterate(waveEffect, (el) => {
     const div = document.createElement('div');
     div.className = 'wave-div';
+    div.style.backgroundColor = rippleColor;
 
     if (isMobile) {
       el.addEventListener('touchstart', (e) => {
