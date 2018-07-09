@@ -1,4 +1,3 @@
-let rippleColor = 'rgba(255, 255, 255, 0.5)';
 (() => {
   'use strict';
 
@@ -164,7 +163,6 @@ let rippleColor = 'rgba(255, 255, 255, 0.5)';
   iterate(waveEffect, (el) => {
     const div = document.createElement('div');
     div.className = 'wave-div';
-    div.style.backgroundColor = rippleColor;
 
     if (isMobile) {
       el.addEventListener('touchstart', (e) => {
