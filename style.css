@@ -1,18 +1,22 @@
 body {
-  background-color: black; }
+  background-color: black;
+}
 
 * {
   outline: none;
-  transition-duration: 0.2s;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
   vertical-align: top;
-  -webkit-tap-highlight-color: transparent; }
+  -webkit-tap-highlight-color: transparent;
+}
 
 .overlay-href {
   position: absolute;
   top: 0px;
   left: 0px;
   bottom: 0px;
-  right: 0px; }
+  right: 0px;
+}
 
 button, .input-text, .checkbox, .radio, input[type='text'], .dropdown, .dropdown > ul > li {
   white-space: nowrap;
@@ -24,22 +28,32 @@ button, .input-text, .checkbox, .radio, input[type='text'], .dropdown, .dropdown
   min-width: 150px;
   border-radius: 4px;
   margin: 5px;
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 input[type='range'], input[type='range']::-webkit-slider-thumb, input[type='checkbox'], input[type='radio'] {
   appearance: none;
   -webkit-appearance: none;
-  -moz-appearance: none; }
+  -moz-appearance: none;
+}
 
 button {
   border-style: none;
   background-color: orange;
   cursor: pointer;
-  user-select: none; }
-  button:hover {
-    background-color: #ffb733; }
-  button::-moz-focus-inner {
-    border: 0; }
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+button:hover {
+  background-color: #ffb733;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+}
 
 .button-canvas {
   position: absolute;
@@ -47,115 +61,262 @@ button {
   left: 0px;
   bottom: 0px;
   right: 0px;
-  border-radius: inherit; }
+  border-radius: inherit;
+}
 
 .wave {
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 .wave-div, .wave-div-input {
   position: absolute;
   border-radius: 50%;
   width: 100px;
   height: 100px;
-  transition-duration: 0s;
+  -webkit-transition-duration: 0s;
+          transition-duration: 0s;
   opacity: 0;
-  animation: waveOut 0.7s ease;
-  transition-delay: 1s;
+  -webkit-animation: waveOut 0.7s ease;
+          animation: waveOut 0.7s ease;
+  -webkit-transition-delay: 1s;
+          transition-delay: 1s;
   z-index: 50;
   pointer-events: none;
-  transition: opacity 0.5s; }
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}
 
 .rippl {
   opacity: 1;
-  transition: transform 0s; }
+  -webkit-transition: -webkit-transform 0s;
+  transition: -webkit-transform 0s;
+  transition: transform 0s;
+  transition: transform 0s, -webkit-transform 0s;
+}
+
+@-webkit-keyframes waveOut {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
 
 @keyframes waveOut {
   from {
-    transform: scale(0); }
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
   to {
-    transform: scale(1); } }
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@-webkit-keyframes waveIn {
+  from {
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 0;
+  }
+}
+
 @keyframes waveIn {
   from {
-    opacity: 1; }
+    opacity: 1;
+  }
   to {
-    transform: scale(1);
-    opacity: 0; } }
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 0;
+  }
+}
+
 .wave-div-input {
-  animation-duration: 0.7s;
-  animation-fill-mode: both;
-  z-index: 0; }
+  -webkit-animation-duration: 0.7s;
+          animation-duration: 0.7s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  z-index: 0;
+}
+
+@-webkit-keyframes waveInputIn {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}
 
 @keyframes waveInputIn {
   from {
-    transform: scale(0);
-    opacity: 1; }
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
   to {
-    transform: scale(1);
-    opacity: 1; } }
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes waveInputOut {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 0;
+  }
+}
+
 @keyframes waveInputOut {
   from {
-    transform: scale(1);
-    opacity: 1; }
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
   to {
-    transform: scale(0);
-    opacity: 0; } }
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 0;
+  }
+}
+
 .circle {
   min-width: 50px;
   min-height: 50px;
-  border-radius: 50%; }
+  border-radius: 50%;
+}
 
 .input-text {
-  display: inline-block; }
+  display: inline-block;
+}
 
 .checkbox, .radio {
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   line-height: 100%;
   display: inline-block;
   vertical-align: middle;
   line-height: 50px;
-  padding-right: 50px; }
-  .checkbox > div, .radio > div {
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    right: 0px;
-    margin: auto 10px auto 10px;
-    display: inline-block;
-    background-color: chartreuse;
-    width: 40px;
-    height: 10px;
-    border-radius: 10px;
-    background-color: gray; }
-    .checkbox > div > div, .radio > div > div {
-      position: absolute;
-      margin: auto;
-      top: 0px;
-      bottom: 0px;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background-color: white;
-      cursor: pointer;
-      animation: unchecking 0.3s linear; }
-  .checkbox input:checked ~ div, .radio input:checked ~ div {
-    background-color: lime; }
-    .checkbox input:checked ~ div div, .radio input:checked ~ div div {
-      animation: checking 0.3s forwards linear; }
+  padding-right: 50px;
+}
+
+.checkbox > div, .radio > div {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  margin: auto 10px auto 10px;
+  display: inline-block;
+  background-color: chartreuse;
+  width: 40px;
+  height: 10px;
+  border-radius: 10px;
+  background-color: gray;
+}
+
+.checkbox > div > div, .radio > div > div {
+  position: absolute;
+  margin: auto;
+  top: 0px;
+  bottom: 0px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: white;
+  cursor: pointer;
+  -webkit-animation: unchecking 0.3s linear;
+          animation: unchecking 0.3s linear;
+}
+
+.checkbox input:checked ~ div, .radio input:checked ~ div {
+  background-color: lime;
+}
+
+.checkbox input:checked ~ div div, .radio input:checked ~ div div {
+  -webkit-animation: checking 0.3s forwards linear;
+          animation: checking 0.3s forwards linear;
+}
+
+@-webkit-keyframes checking {
+  0% {
+    -webkit-transform: translateX(0) scale(1);
+            transform: translateX(0) scale(1);
+  }
+  50% {
+    -webkit-transform: translateX(10px) scale(0.5) scaleX(4);
+            transform: translateX(10px) scale(0.5) scaleX(4);
+  }
+  100% {
+    -webkit-transform: translateX(20px) scale(1);
+            transform: translateX(20px) scale(1);
+  }
+}
 
 @keyframes checking {
   0% {
-    transform: translateX(0) scale(1); }
+    -webkit-transform: translateX(0) scale(1);
+            transform: translateX(0) scale(1);
+  }
   50% {
-    transform: translateX(10px) scale(0.5) scaleX(4); }
+    -webkit-transform: translateX(10px) scale(0.5) scaleX(4);
+            transform: translateX(10px) scale(0.5) scaleX(4);
+  }
   100% {
-    transform: translateX(20px) scale(1); } }
+    -webkit-transform: translateX(20px) scale(1);
+            transform: translateX(20px) scale(1);
+  }
+}
+
+@-webkit-keyframes unchecking {
+  0% {
+    -webkit-transform: translateX(20px) scale(1);
+            transform: translateX(20px) scale(1);
+  }
+  50% {
+    -webkit-transform: translateX(10px) scale(0.5) scaleX(4);
+            transform: translateX(10px) scale(0.5) scaleX(4);
+  }
+  100% {
+    -webkit-transform: translateX(0) scale(1);
+            transform: translateX(0) scale(1);
+  }
+}
+
 @keyframes unchecking {
   0% {
-    transform: translateX(20px) scale(1); }
+    -webkit-transform: translateX(20px) scale(1);
+            transform: translateX(20px) scale(1);
+  }
   50% {
-    transform: translateX(10px) scale(0.5) scaleX(4); }
+    -webkit-transform: translateX(10px) scale(0.5) scaleX(4);
+            transform: translateX(10px) scale(0.5) scaleX(4);
+  }
   100% {
-    transform: translateX(0) scale(1); } }
+    -webkit-transform: translateX(0) scale(1);
+            transform: translateX(0) scale(1);
+  }
+}
+
 input[type='text'] {
   border-style: solid;
   border-color: #ff9900;
@@ -163,78 +324,145 @@ input[type='text'] {
   background-color: transparent;
   margin: 0px;
   padding: 5px;
-  z-index: 5; }
+  z-index: 5;
+}
+
 input[type='range'] {
   background-color: green;
   height: 5px;
   margin: auto;
   margin: 10px;
-  border-radius: 2.5px; }
-  input[type='range']::-webkit-slider-thumb {
-    border-radius: 50%;
-    background-color: tomato;
-    cursor: pointer;
-    width: 20px;
-    height: 20px;
-    transition-duration: 0.2s; }
-  input[type='range']::-webkit-slider-thumb:active {
-    transform: scale(1.2);
-    transition-duration: 0.2s; }
+  border-radius: 2.5px;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  border-radius: 50%;
+  background-color: tomato;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+}
+
+input[type='range']::-webkit-slider-thumb:active {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+}
+
 input[type='checkbox'] {
-  -moz-appearance: none; }
+  -moz-appearance: none;
+}
+
 input[type='radio'] {
-  -moz-appearance: none; }
+  -moz-appearance: none;
+}
 
 .dropdown {
   display: inline-table;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   text-align: center;
   background-color: indigo;
   color: white;
   line-height: 50px;
   cursor: pointer;
-  overflow: auto; }
-  .dropdown > ul {
-    position: absolute;
-    top: 100%;
-    min-width: 100%;
-    margin: 0px;
-    padding: 0px;
-    list-style-type: none; }
-    .dropdown > ul > li {
-      display: block;
-      opacity: 0;
-      z-index: 1;
-      animation-duration: 0.2s;
-      animation-fill-mode: both;
-      margin: 0px;
-      background-color: darkorange;
-      color: white;
-      border-radius: 0px; }
-      .dropdown > ul > li:first-child {
-        border-top-left-radius: 4px;
-        border-top-right-radius: 4px; }
-      .dropdown > ul > li:last-child {
-        border-bottom-left-radius: 4px;
-        border-bottom-right-radius: 4px; }
-      .dropdown > ul > li:hover {
-        background-color: #ffa333; }
+  overflow: auto;
+}
+
+.dropdown > ul {
+  position: absolute;
+  top: 100%;
+  min-width: 100%;
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+}
+
+.dropdown > ul > li {
+  display: block;
+  opacity: 0;
+  z-index: 1;
+  -webkit-animation-duration: 0.2s;
+          animation-duration: 0.2s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  margin: 0px;
+  background-color: darkorange;
+  color: white;
+  border-radius: 0px;
+}
+
+.dropdown > ul > li:first-child {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.dropdown > ul > li:last-child {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.dropdown > ul > li:hover {
+  background-color: #ffa333;
+}
+
+@-webkit-keyframes dropdown-li {
+  from {
+    -webkit-transform: translateY(-20px);
+            transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    opacity: 1;
+  }
+}
 
 @keyframes dropdown-li {
   from {
-    transform: translateY(-20px);
-    opacity: 0; }
+    -webkit-transform: translateY(-20px);
+            transform: translateY(-20px);
+    opacity: 0;
+  }
   to {
-    transform: translateY(0px);
-    opacity: 1; } }
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes dropdown-li-back {
+  from {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    opacity: 1;
+    pointer-events: none;
+  }
+  to {
+    -webkit-transform: translateY(-20px);
+            transform: translateY(-20px);
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
 @keyframes dropdown-li-back {
   from {
-    transform: translateY(0px);
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
     opacity: 1;
-    pointer-events: none; }
+    pointer-events: none;
+  }
   to {
-    transform: translateY(-20px);
+    -webkit-transform: translateY(-20px);
+            transform: translateY(-20px);
     opacity: 0;
-    pointer-events: none; } }
-
+    pointer-events: none;
+  }
+}
 /*# sourceMappingURL=style.css.map */
