@@ -169,7 +169,7 @@
         el.appendChild(div);
         const rect = el.getBoundingClientRect();
         const s = Math.sqrt(rect.width ** 2 + rect.height ** 2);
-        div.style.width = div.style.height = 2 * s;
+        div.style.width = div.style.height = 2 * s + 'px';
         div.style.left = e.touches[0].clientX - rect.left - s + 'px';
         div.style.top = e.touches[0].clientY - rect.top - s + 'px';
         div.classList.add('rippl');
