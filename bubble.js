@@ -194,6 +194,9 @@
       el.addEventListener('mouseup', (e) => {
         div.classList.remove('rippl');
       });
+      el.addEventListener('mouseleave', () => {
+        div.classList.remove('rippl');
+      });
     }
   });
 })();
